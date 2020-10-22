@@ -4,10 +4,10 @@
 class Vector3 {
 public:
 
-	Vector3();
-	Vector3(double x, double y, double z);
-	Vector3(const Vector3& v);
-	~Vector3();
+	Vector3() : x(0.0), y(0.0), z(0.0) {}
+	Vector3(double x, double y, double z) : x(x), y(y), z(z) {}
+	Vector3(const Vector3& v) : x(v.x), y(v.y), z(v.z) {}
+	~Vector3() {}
 
 	Vector3 operator = (const Vector3& vec) const;
 	Vector3 operator +  (const Vector3& vec) const;
@@ -23,28 +23,9 @@ public:
 	double         x, y, z;
 
 private:
+
 	double length() const;
 };
-
-inline
-Vector3::Vector3() : x(0.0), y(0.0), z(0.0)
-{
-}
-
-inline
-Vector3::Vector3(double xx, double yy, double zz) : x(xx), y(yy), z(zz) 
-{
-}
-
-inline
-Vector3::Vector3(const Vector3& v) : x(v.x), y(v.y), z(v.z)
-{
-}
-
-inline
-Vector3::~Vector3()
-{
-}
 
 inline Vector3
 Vector3::operator = (const Vector3& vec) const
