@@ -5,26 +5,25 @@ class Vector3 {
 public:
 
 	Vector3() : x(0.0), y(0.0), z(0.0) {}
-	Vector3(double x, double y, double z) : x(x), y(y), z(z) {}
+	Vector3(float xx, float yy, float zz) : x(xx), y(yy), z(zz) {}
 	Vector3(const Vector3& v) : x(v.x), y(v.y), z(v.z) {}
-	~Vector3() {}
 
 	Vector3 operator = (const Vector3& vec) const;
 	Vector3 operator +  (const Vector3& vec) const;
 	Vector3& operator += (const Vector3& vec);
-	Vector3& operator /= (const double val);
+	Vector3& operator /= (const float val);
 
-	double	 distanceTo(const Vector3& vec) const;
-	double   angleTo(const Vector3& vec) const;
-	double   dotProduct(const Vector3& vec) const;
+	float	 distanceTo(const Vector3& vec) const;
+	float   angleTo(const Vector3& vec) const;
+	float   dotProduct(const Vector3& vec) const;
 	Vector3  crossProduct(const Vector3& vec) const;
 	Vector3& normalize();
 
-	double         x, y, z;
+	float         x, y, z;
 
 private:
 
-	double length() const;
+	float length() const;
 };
 
 inline Vector3
@@ -36,7 +35,7 @@ Vector3::operator = (const Vector3& vec) const
 }
 
 inline Vector3&
-Vector3::operator /= (double val)
+Vector3::operator /= (float val)
 {
 	x /= val;
 	y /= val;
@@ -60,27 +59,27 @@ Vector3::operator += (const Vector3& v)
 	return *this;
 }
 
-inline double
+inline float
 Vector3::distanceTo(const Vector3& vec) const
 {
-	double a = (x - vec.x) * (x - vec.x);
-	double b = (y - vec.y) * (y - vec.y);
-	double c = (z - vec.z) * (z - vec.z);
+	float a = (x - vec.x) * (x - vec.x);
+	float b = (y - vec.y) * (y - vec.y);
+	float c = (z - vec.z) * (z - vec.z);
 
 	return sqrt(a + b + c);
 }
 
-inline double
+inline float
 Vector3::angleTo(const Vector3& vec) const
 {
-	double dot = dotProduct(vec);
+	float dot = dotProduct(vec);
 
-	const double len = length() * vec.length();
+	const float len = length() * vec.length();
 
 	return acos(dot / len);
 }
 
-inline double
+inline float
 Vector3::dotProduct(const Vector3& vec) const
 {
 	return x * vec.x + y * vec.y + z * vec.z;
@@ -98,14 +97,14 @@ Vector3::crossProduct(const Vector3& vec) const
 inline Vector3&
 Vector3::normalize() 
 {
-	const double len = length();
+	const float len = length();
 	 //Should check if len is positive
 	*this /= len;
 
 	return *this;
 }
 
-inline double
+inline float
 Vector3::length() const
 {
 	return sqrt((x * x) + (y * y) + (z * z));
